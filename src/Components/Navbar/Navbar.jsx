@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
 import { Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
@@ -56,6 +56,20 @@ const Navbar = () => {
     }
   };
 
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  useEffect(() => {
+
+    if (currentPath === "/") {
+      setSelectedIcon("home");
+    }else if (currentPath === "/dashboard") {
+      setSelectedIcon("dashboard");
+    } else if (currentPath === "/mentors") {
+      setSelectedIcon("mentors");
+    } 
+  }, [currentPath, role]);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -214,7 +228,7 @@ const Navbar = () => {
               className={`navbar-item ${selectedIcon === "home" ? "selected" : ""
                 }`}
               onClick={() => {
-                navigate("/posts");
+                navigate("/");
                 handleItemClick("home");
               }}
             >
