@@ -376,7 +376,7 @@ const ResetPassword = () => {
               </div>
             </div>
             <p className="login-option-text">
-              All Set? <a href="/login">Login in</a>
+              All Set? <a href="/login">Login</a>
             </p>
           </div>
         </div>
